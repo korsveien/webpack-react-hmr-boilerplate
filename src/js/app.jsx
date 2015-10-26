@@ -1,9 +1,9 @@
 import '../css/style.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Table from './components/Table.jsx';
+import Home from './components/Home.jsx';
 
 ReactDOM.render(
-    <Table/>,
+    <Home/>,
     document.getElementById('app')
 );
