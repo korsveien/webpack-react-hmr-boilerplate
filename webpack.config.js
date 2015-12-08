@@ -1,5 +1,7 @@
 var webpack = require('webpack');
 var path = require ('path');
+var node_modules = path.resolve(__dirname, 'node_modules');
+var pathToReact = path.resolve(node_modules, 'react/dist/react.min.js');
 
 module.exports = {
     context: path.resolve(__dirname),
@@ -47,7 +49,8 @@ module.exports = {
                 test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                 loader: "file-loader" 
             }
-        ]
+        ],
+        noParse: [pathToReact]
     },
      plugins: [
         new webpack.HotModuleReplacementPlugin(),
