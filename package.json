@@ -8,7 +8,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "scripts": {
-      "start": "webpack-dev-server --hot --inline"
+      "build": "webpack -p",
+      "watch": "webpack --watch",
+      "dev": "webpack-dev-server --hot --inline"
   },
   "keywords": [
     "budget"
