@@ -1,14 +1,26 @@
+var webpack = require('webpack');
+var path = require ('path');
+
 module.exports = {
-    context: __dirname + "/src",
+    context: path.resolve(__dirname),
 
     entry: {
-        javascript: "./js/app.jsx",
-        html: "./index.html"
+        javascript: "./src/js/app.jsx",
+        html: "./src/index.html"
     },
 
     output: {
         filename: "bundle.js",
-        path: __dirname + "/dist"
+        path: path.resolve(__dirname + "/dist")
+    },
+
+    devServer: {
+        hot: true,
+        inline: true,
+        progress: true,
+        stats: 'errors-only',
+        host: process.env.HOST,
+        host: process.env.PORT
     },
 
     module: {
@@ -20,12 +32,24 @@ module.exports = {
             },
             {
                 test: /\.html$/,
+                exclude: /node_modules/,
                 loader: "file?name=[name].[ext]"
             },
             {
                 test: /\.css$/,
                 loader: "style-loader!css-loader"
+            },
+            {
+                test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                loader: "url-loader?limit=10000&mimetype=application/font-woff" 
+            },
+            {
+                test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                loader: "file-loader" 
             }
         ]
-    }
+    },
+     plugins: [
+        new webpack.HotModuleReplacementPlugin(),
+      ]
 }
